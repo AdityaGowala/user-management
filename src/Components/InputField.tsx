@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import type { User } from "../App";
 
 interface RegisterProps {
+  darkMode: boolean;
   addUser: (user: User) => void;
 }
 
@@ -18,7 +19,7 @@ interface InputProps {
   isPassword?: boolean;
 }
 
-const InputField: React.FC<InputProps> = ({
+const InputField: React.FC<InputProps & { darkMode?: boolean }> = ({
   type = "text",
   value,
   onChange,
@@ -27,12 +28,16 @@ const InputField: React.FC<InputProps> = ({
   invalid,
   loading,
   isPassword,
+  darkMode,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const baseStyle = "w-full rounded-xl transition focus:outline-none focus:ring-2";
   const sizeStyle = "p-4 text-base";
   const invalidStyle = invalid ? "border-red-500 focus:ring-red-500" : "";
+
+  const textColor = darkMode ? "text-white" : "text-black";
+  const borderColor = darkMode ? "border-gray-600 focus:ring-blue-400" : "border-gray-300 focus:ring-blue-500";
 
   return (
     <div className="relative w-full">
@@ -42,7 +47,7 @@ const InputField: React.FC<InputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || loading}
-        className={`${baseStyle} ${sizeStyle} ${invalidStyle} border border-gray-300 focus:ring-blue-500 text-black ${
+        className={`${baseStyle} ${sizeStyle} ${invalidStyle} border ${borderColor} ${textColor} ${
           disabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
       />
@@ -51,7 +56,7 @@ const InputField: React.FC<InputProps> = ({
       {isPassword && !disabled && !loading && (
         <button
           type="button"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition"
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
@@ -62,7 +67,7 @@ const InputField: React.FC<InputProps> = ({
       {!isPassword && value && !disabled && !loading && (
         <button
           type="button"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition"
           onClick={() => onChange("")}
         >
           <AiOutlineCloseCircle size={20} />
@@ -72,7 +77,7 @@ const InputField: React.FC<InputProps> = ({
   );
 };
 
-const Register: React.FC<RegisterProps> = ({ addUser }) => {
+const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -111,12 +116,19 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
     setTimeout(() => setLoading(false), 500);
   };
 
+  const bgColor = darkMode ? "bg-gray-900" : "bg-white";
+  const textColor = darkMode ? "text-white" : "text-black";
+  const subTextColor = darkMode ? "text-gray-300" : "text-gray-600";
+
   return (
-    <div className="p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 w-full max-w-md mx-auto" style={{ minHeight: "650px", backgroundColor: "white" }}>
+    <div
+      className={`p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 w-full max-w-md mx-auto ${bgColor} ${textColor}`}
+      style={{ minHeight: "650px" }}
+    >
       <h2 className="text-2xl md:text-3xl font-extrabold text-center text-blue-500 tracking-tight">
         Register User
       </h2>
-      <p className="text-center text-gray-600 mb-2 text-sm md:text-base">
+      <p className={`text-center mb-2 text-sm md:text-base ${subTextColor}`}>
         Fill in the details below to add a new user.
       </p>
 
@@ -125,6 +137,7 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
         onChange={(val) => handleChange("fullName", val)}
         placeholder="Full Name"
         loading={loading}
+        darkMode={darkMode}
       />
       <InputField
         type="number"
@@ -132,11 +145,14 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
         onChange={(val) => handleChange("age", val)}
         placeholder="Age"
         loading={loading}
+        darkMode={darkMode}
       />
       <select
         value={formData.gender}
         onChange={(e) => handleChange("gender", e.target.value)}
-        className="rounded-xl p-4 border focus:outline-none focus:ring-2 focus:ring-blue-500 w-full transition text-black"
+        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
+          darkMode ? "text-white border-gray-600 focus:ring-blue-400" : "text-black border-gray-300 focus:ring-blue-500"
+        }`}
         disabled={loading}
       >
         <option value="">Select Gender</option>
@@ -147,7 +163,9 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
       <select
         value={formData.role}
         onChange={(e) => handleChange("role", e.target.value)}
-        className="rounded-xl p-4 border focus:outline-none focus:ring-2 focus:ring-blue-500 w-full transition text-black"
+        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
+          darkMode ? "text-white border-gray-600 focus:ring-blue-400" : "text-black border-gray-300 focus:ring-blue-500"
+        }`}
         disabled={loading}
       >
         <option value="">Select Role</option>
@@ -161,6 +179,7 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
         onChange={(val) => handleChange("email", val)}
         placeholder="Email"
         loading={loading}
+        darkMode={darkMode}
       />
       <InputField
         value={formData.password}
@@ -168,6 +187,7 @@ const Register: React.FC<RegisterProps> = ({ addUser }) => {
         placeholder="Password"
         loading={loading}
         isPassword
+        darkMode={darkMode}
       />
 
       <button
