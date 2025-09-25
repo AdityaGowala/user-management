@@ -31,9 +31,10 @@ const InputField: React.FC<InputProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const baseStyle = "w-full rounded-xl transition focus:outline-none focus:ring-2";
+  const baseStyle = "w-full rounded-xl border transition focus:outline-none focus:ring-2";
   const sizeStyle = "p-4 text-base";
   const invalidStyle = invalid ? "border-red-500 focus:ring-red-500" : "";
+  const textColor = "text-gray-900 dark:text-white";
 
   return (
     <div className="relative w-full">
@@ -43,9 +44,9 @@ const InputField: React.FC<InputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || loading}
-        className={`${baseStyle} ${sizeStyle} ${invalidStyle} border border-gray-300 dark:border-gray-600 focus:ring-blue-500
-          ${disabled ? "opacity-50 cursor-not-allowed" : ""} 
-          ${value || placeholder ? "text-gray-900 dark:text-white" : ""}`}
+        className={`${baseStyle} ${sizeStyle} ${invalidStyle} focus:ring-blue-500 ${textColor} ${
+          disabled ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       />
 
       {/* Password toggle */}
@@ -114,8 +115,9 @@ const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
 
   return (
     <div
-      className={`p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 transition-colors duration-300 w-full max-w-md mx-auto
-        ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}
+      className={`p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 transition-colors duration-300 w-full max-w-md mx-auto ${
+        darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+      }`}
       style={{ minHeight: "650px" }}
     >
       <h2 className="text-2xl md:text-3xl font-extrabold text-center text-blue-500 tracking-tight">
@@ -179,8 +181,9 @@ const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className={`mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg transition-transform duration-200 hover:scale-105
-          ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg transition-transform duration-200 hover:scale-105 ${
+          loading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       >
         {loading ? "Adding..." : "Register"}
       </button>
