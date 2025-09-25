@@ -43,7 +43,7 @@ The project allows seamless user registration, real-time validation, and organiz
 ## 🚀 Live Demo
 
 Check out the live demo of the project here:  
-**[View Demo](https://your-vercel-link.vercel.app)**
+**[View Demo](https://user-management-system-rust.vercel.app/)**
 
 ---
 
