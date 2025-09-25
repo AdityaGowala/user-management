@@ -28,16 +28,15 @@ const InputField: React.FC<InputProps & { darkMode?: boolean }> = ({
   invalid,
   loading,
   isPassword,
-  darkMode,
+  darkMode = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const baseStyle = "w-full rounded-xl transition focus:outline-none focus:ring-2";
   const sizeStyle = "p-4 text-base";
   const invalidStyle = invalid ? "border-red-500 focus:ring-red-500" : "";
-
-  const textColor = darkMode ? "text-white" : "text-black";
   const borderColor = darkMode ? "border-gray-600 focus:ring-blue-400" : "border-gray-300 focus:ring-blue-500";
+  const textColor = darkMode ? "text-white placeholder-gray-300" : "text-gray-900 placeholder-gray-500";
 
   return (
     <div className="relative w-full">
@@ -47,7 +46,7 @@ const InputField: React.FC<InputProps & { darkMode?: boolean }> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || loading}
-        className={`${baseStyle} ${sizeStyle} ${invalidStyle} border ${borderColor} ${textColor} ${
+        className={`${baseStyle} ${sizeStyle} ${invalidStyle} ${borderColor} ${textColor} ${
           disabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
       />
@@ -116,22 +115,21 @@ const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
     setTimeout(() => setLoading(false), 500);
   };
 
-  const bgColor = darkMode ? "bg-gray-900" : "bg-white";
-  const textColor = darkMode ? "text-white" : "text-black";
-  const subTextColor = darkMode ? "text-gray-300" : "text-gray-600";
+  const containerBg = darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900";
 
   return (
     <div
-      className={`p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 w-full max-w-md mx-auto ${bgColor} ${textColor}`}
+      className={`p-6 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-5 transition-colors duration-300 w-full max-w-md mx-auto ${containerBg}`}
       style={{ minHeight: "650px" }}
     >
       <h2 className="text-2xl md:text-3xl font-extrabold text-center text-blue-500 tracking-tight">
         Register User
       </h2>
-      <p className={`text-center mb-2 text-sm md:text-base ${subTextColor}`}>
+      <p className="text-center text-gray-400 dark:text-gray-300 mb-2 text-sm md:text-base">
         Fill in the details below to add a new user.
       </p>
 
+      {/* Inputs */}
       <InputField
         value={formData.fullName}
         onChange={(val) => handleChange("fullName", val)}
@@ -150,10 +148,12 @@ const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
       <select
         value={formData.gender}
         onChange={(e) => handleChange("gender", e.target.value)}
-        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
-          darkMode ? "text-white border-gray-600 focus:ring-blue-400" : "text-black border-gray-300 focus:ring-blue-500"
-        }`}
         disabled={loading}
+        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
+          darkMode
+            ? "bg-gray-800 border-gray-600 text-white"
+            : "bg-white border-gray-300 text-gray-900"
+        }`}
       >
         <option value="">Select Gender</option>
         <option value="Male">Male</option>
@@ -163,10 +163,12 @@ const Register: React.FC<RegisterProps> = ({ darkMode, addUser }) => {
       <select
         value={formData.role}
         onChange={(e) => handleChange("role", e.target.value)}
-        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
-          darkMode ? "text-white border-gray-600 focus:ring-blue-400" : "text-black border-gray-300 focus:ring-blue-500"
-        }`}
         disabled={loading}
+        className={`rounded-xl p-4 border focus:outline-none focus:ring-2 w-full transition ${
+          darkMode
+            ? "bg-gray-800 border-gray-600 text-white"
+            : "bg-white border-gray-300 text-gray-900"
+        }`}
       >
         <option value="">Select Role</option>
         <option value="User">User</option>
