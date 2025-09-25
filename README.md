@@ -1,5 +1,9 @@
 # User Management System
 
+
+## 🚀 Live Demo  
+
+Click here to view the project:  
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://user-management-system-rust.vercel.app/)
 
 A professional **User Registration & Data Management System** built with **React**, **TypeScript**, and **Tailwind CSS**.  
@@ -37,15 +41,6 @@ The project allows seamless user registration, real-time validation, and organiz
 ![Dark Mode 1](src/Assets/Dark1.png)
 ![Dark Mode 2](src/Assets/DarkComponent.png)
 
-
----
-
-## 🚀 Live Demo
-
-Check out the live demo of the project here:  
-**[View Demo](https://user-management-system-rust.vercel.app/)**
-
----
 
 ## Description of My Approach
 
