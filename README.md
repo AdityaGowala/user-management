@@ -28,13 +28,15 @@ The project allows seamless user registration, real-time validation, and organiz
 ## 🖥️ Screenshots
 
 ### Hero Section
-![Registration Form](https://via.placeholder.com/600x400.png?text=Registration+Form)
+![Registration Form](src/Assets/HomePage.png)
 
 ### Registration Form and Data Table
-![Data Table](https://via.placeholder.com/600x400.png?text=Data+Table)
+![Data Table](src/Assets/Components.png)
 
 ### Dark Mode
-![Dark Mode](https://via.placeholder.com/600x400.png?text=Dark+Mode)
+![Dark Mode 1](src/Assets/Dark1.png)
+![Dark Mode 2](src/Assets/Dark2.png)
+
 
 ---
 
