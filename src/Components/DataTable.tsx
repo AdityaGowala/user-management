@@ -51,7 +51,7 @@ export const DataTable: React.FC<DataTableProps> = ({ darkMode, users, loading }
   return (
     <div
       className={`p-4 md:p-6 rounded-3xl shadow-2xl flex-1 transition-colors duration-300 ${
-        darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
+        darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
       }`}
       style={{ minHeight: "650px" }}
     >
@@ -72,7 +72,7 @@ export const DataTable: React.FC<DataTableProps> = ({ darkMode, users, loading }
           <table className="min-w-full border-collapse table-auto w-full">
             <thead
               className={`sticky top-0 z-20 ${
-                darkMode ? "bg-gray-800 text-gray-100" : "bg-blue-500 text-white"
+                darkMode ? "bg-blue-600 text-gray-100" : "bg-blue-500 text-white"
               }`}
             >
               <tr>
