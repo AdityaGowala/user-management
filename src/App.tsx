@@ -55,7 +55,7 @@ const App = () => {
       <div className="pt-28 px-4 md:px-16 flex flex-col md:flex-row gap-8">
         {/* Register Form */}
         <div className="flex-shrink-0 w-full md:w-[500px]">
-          <Register darkMode={darkMode} addUser={addUser} />
+          <Register addUser={addUser} />
         </div>
 
         {/* DataTable */}
