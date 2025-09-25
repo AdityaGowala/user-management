@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "./Components/Navbar";
 import Register from "./Components/InputField";
 import toast, { Toaster } from "react-hot-toast";

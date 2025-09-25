@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState , useMemo} from "react";
+
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import type { User } from "../App";
 
@@ -25,7 +26,7 @@ export const DataTable: React.FC<DataTableProps> = ({ darkMode, users, loading }
     setSortConfig({ key, direction });
   };
 
-  const sortedUsers = React.useMemo(() => {
+  const sortedUsers = useMemo(() => {
     if (!sortConfig) return users;
     return [...users].sort((a, b) => {
       const valA = a[sortConfig.key];
