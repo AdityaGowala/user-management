@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 import type { User } from "../App";
@@ -45,7 +44,8 @@ const InputField: React.FC<InputProps> = ({
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || loading}
         className={`${baseStyle} ${sizeStyle} ${invalidStyle} border border-gray-300 dark:border-gray-600 focus:ring-blue-500
-          text-gray-900 dark:text-white ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+          ${disabled ? "opacity-50 cursor-not-allowed" : ""} 
+          ${value || placeholder ? "text-gray-900 dark:text-white" : ""}`}
       />
 
       {/* Password toggle */}
